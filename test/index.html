@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Spec Runner</title>
+  <link rel="stylesheet" href="../bower_components/mocha/mocha.css">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <div id="content">
+    <ul id="images">
+
+    </ul>
+  </div>
+
+  <script type="text/template" id="image-template">
+    <div class="image-item <%=(favourite ? 'favourited':'')%>">
+      <img src="<%=media.m%>" title="<%=title%>" class="<%=(favourite ? 'selected':'')%>" />
+      <div class="image-desc">
+        <span class="title"><strong>Title:</strong> <%=title%></span>
+        <span class="author"><strong>Author:</strong> <%=author%></span>
+      </div>
+    </div>
+  </script>
+
+  <script src="../bower_components/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <script src="../bower_components/chai/chai.js"></script>
+  <script>
+    var assert = chai.assert;
+    var expect = chai.expect;
+    var should = chai.should();
+  </script>
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="../bower_components/underscore/underscore.js"></script>
+  <script src="../bower_components/backbone/backbone.js"></script>
+  <script src="../bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+  <script src="../bower_components/backbone.nativeview/backbone.nativeview.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js scripts/main.js -->
+  <script src="../scripts/models/image.model.js"></script>
+  <script src="../scripts/collections/images.collection.js"></script>
+  <script src="../scripts/views/image.view.js"></script>
+  <script src="../scripts/views/app.view.js"></script>
+  <!-- endbuild -->
+
+  <script src="spec/test.js"></script>
+  <script>
+    if (navigator.userAgent.indexOf('PhantomJS') === -1) {
+      mocha.run();
+    }
+  </script>
+</body>
+</html>
